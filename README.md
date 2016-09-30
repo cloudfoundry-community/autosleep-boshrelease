@@ -2,12 +2,7 @@
 
 ## Purpose
 
-The purpose of this bosh release is to offer some preconfigured cloudfoundry applications components, for use in Bosh / Cloudfoundry operations.
-
-The idea is to ease bosh ops activities, providing them usefull features, packaged in a bosh standard way (manifest, errand, etc ..)
-
-NB: the mechanism used is to push operator level cf apps inside cloudfoundry, including sensitive credentials. Take care to target an admin only visible organization (ie: system_domain)
-moreover, these operator tools wont be more available than the target cf deployment. Try cross deploying if you have multilple cf depl (ie: for cachet portal / cachet monitor) for high availability
+The purpose of this bosh release is to deploy and setup AutoSleep service.
 
 ### Orange AutoSleep Service for Cloudfoundry
 The aim of the auto-sleep project is to give the ability for Cloud Foundry operators to automatically have cf apps idled, after a given period of inactivity, and then automatically restarted when end users access apps again through traffic their routes.
@@ -24,28 +19,6 @@ prerequisite:
 * a cloudfoundry autosleep account
 * cf marketplace with mysql for autosleep broker persistence
 * open cf application security group, so that autosleep and autowakeup cf apps can acces the cloudfoundry api
-
-
-
-### Cachet Server and Monitor
-
-Cachet server enables cloudfoundry operator to give health status for end users. 
-
-This release provide 2 bosh errands, pushing cf application for :
-* cachet server
-* cachet monitor
-
-recommanded reading before use:
-* https://github.com/ArthurHlt/Cachet-cf
-* https://github.com/CastawayLabs/cachet-monitor/
-
-prerequisite:
-* a cloudfoundry org admin account
-* cf marketplace with mysql for cachet persistent
-* optional redis cf marketplace service, for cachet caching
-* open cf application security group, so that cachet monitor can reach cachet server
-
-
 
 
 ## Usage
