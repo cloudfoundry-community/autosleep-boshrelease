@@ -2,7 +2,7 @@
 
 ## Purpose
 
-The purpose of this bosh release is to deploy and setup AutoSleep service.
+The purpose of this bosh release is to deploy and setup AutoSleep service (https://github.com/orange-cloudfoundry/autosleep).
 
 ### Orange AutoSleep Service for Cloudfoundry
 The aim of the auto-sleep project is to give the ability for Cloud Foundry operators to automatically have cf apps idled, after a given period of inactivity, and then automatically restarted when end users access apps again through traffic their routes.
@@ -12,8 +12,10 @@ This bosh release provides 3 errands :
 * publish_autosleep : install and publish the autosleep service broker 
 * publish_autowake_proxy: install and publish the autowake app, binding it to wildcard route domains
 * provision_autosleep: batch creates autosleep service instances in all the spaces of a given org 
+* unprovision_autosleep: batch removes autosleep service instances in all the spaces of a given org 
+
 recommanded reading before use:
-* https://github.com/Orange-OpenSource/cloudfoundry-operators-tools-boshrelease
+* https://github.com/orange-cloudfoundry/autosleep-service-boshrelease
 
 prerequisite:
 * a cloudfoundry autosleep account
