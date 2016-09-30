@@ -1,0 +1,81 @@
+---
+name: publish_autosleep
+packages:
+- autosleep_core_pkg
+- cli
+templates:
+  bin/run: bin/run
+  helpers/ctl_setup.sh: helpers/ctl_setup.sh
+  helpers/ctl_utils.sh: helpers/ctl_utils.sh
+  bin/errand.sh.erb: bin/errand.sh
+
+properties:
+
+  autosleep.broker_name:
+    description: registration name of the broker
+    default: autosleep-broker
+  autosleep.db.service:
+    description: autosleep db market place service to use
+    default: p-mysql
+
+  autosleep.db.plan:
+    description: autosleep db market place service plan to use
+    default: 100mb
+    
+  autosleep.security_group:
+    description: autosleep security group. must enable cf api access
+        
+  autosleep.security.user.name:
+    description: security username
+    default: broker
+  autosleep.security.user.password:
+    description: security password
+  autosleep.cf.client.target.host:
+    description: cloudfoundry hostname 
+  autosleep.cf.client.skip.ssl.validation:
+    description: should skip ssl validation for unsigned cf api
+    default: false
+  autosleep.cf.client.username:
+    description: cloudfoundry username
+  autosleep.cf.client.password:
+    description: cloudfoundry password
+  autosleep.cf.client.clientId:
+    decription: oauth client_id
+    default: cf
+  autosleep.cf.client.clientSecret:
+    description: client_secret
+    default: ""
+  autosleep.cf.security.password.encodingSecret:
+    description: password_encoding_secret
+    default: ""
+  autosleep.cf.service.broker.id:
+    description: service_broker_id, seen as service offering name
+    default: autosleep
+  autosleep.cf.service.plan.id:
+    description: service_plan_id
+    default: default    
+    
+  cf.api_url:
+    description: 'Full URL of Cloud Foundry API'
+    example: 'https://api.your-domain.example.com'
+  cf.skip_ssl_validation:
+    description: 'Skip SSL validation when connecting to Cloud Foundry API'
+    default: false
+  cf.username:
+    description: 'Username of the admin user'
+  cf.password:
+    description: 'Password of the admin user'
+  cf.org:
+    description: 'Password of the admin user'
+    example: system_domain
+  cf.default_space:
+    description: 'Password of the admin user'
+    example: default
+  cf.target_space:
+    description: 'Password of the admin user'
+  cf.appname:
+    description: cf app name to push. will also be the hostname on cf.domain
+  cf.domain:
+    description: domain name to expose the gateway
+    
+    

@@ -1,0 +1,71 @@
+#!/bin/bash
+set -e
+export PATH=$PATH:/var/vcap/packages/cli
+
+
+CF_API_URL='<%= p("cf.api_url") %>'
+CF_USERNAME='<%= p("cf.username") %>'
+CF_PASSWORD='<%= p("cf.password") %>'
+CF_ORG='<%= p("cf.org") %>'
+CF_DEFAULT_SPACE='<%= p("cf.default_space") %>'
+CF_TARGET_SPACE='<%= p("cf.target_space") %>'
+
+
+CF_APP_NAME='<%= p("cf.appname") %>'
+CF_DOMAIN='<%= p("cf.domain") %>'
+
+cf login -a $CF_API_URL  -u $CF_USERNAME -p $CF_PASSWORD  -o $CF_ORG -s $CF_DEFAULT_SPACE --skip-ssl-validation
+
+cf create-space $CF_TARGET_SPACE
+cf target -s $CF_TARGET_SPACE
+
+
+
+
+
+cf push $CF_APP_NAME  -p /var/vcap/packages/autosleep_core_pkg/autosleep-core.war -i 1 -m 1G  -b java_buildpack --no-start --no-route -t 120 
+
+#map the route on specified domain
+cf map-route $CF_APP_NAME $CF_DOMAIN --hostname $CF_APP_NAME  
+
+
+#create and bind mysql db service
+cf create-service <%= p("autosleep.db.service") %> <%= p("autosleep.db.plan") %> autosleep-mysql
+cf bind-service $CF_APP_NAME autosleep-mysql
+
+
+#prepare JAVA_OPTS to pass setting to the spring app
+JAVA_OPTS="-Djava.security.egd=file:/dev/urandom \
+-Dlogging.level.org.springframework.web.filter.CommonsRequestLoggingFilter=ERROR \
+-Dsecurity.user.name=<%= p("autosleep.security.user.name") %> \
+-Dsecurity.user.password=<%= p("autosleep.security.user.password") %> \
+-Dcf.client.target.host=<%= p("autosleep.cf.client.target.host") %> \
+-Dcf.client.skip.ssl.validation=<%= p("autosleep.cf.client.skip.ssl.validation") %> \
+-Dcf.client.username=<%= p("autosleep.cf.client.username") %> \
+-Dcf.client.password=<%= p("autosleep.cf.client.password") %> \
+-Dcf.client.clientId=<%= p("autosleep.cf.client.clientId") %> \
+-Dcf.client.clientSecret=<%= p("autosleep.cf.client.clientSecret") %> \
+-Dcf.security.password.encodingSecret=<%= p("autosleep.cf.security.password.encodingSecret") %> \
+-Dcf.service.broker.id=<%= p("autosleep.cf.service.broker.id") %> \
+-Dcf.service.plan.id=<%= p("autosleep.cf.service.plan.id") %> \
+"
+
+#set cf env properties
+cf set-env $CF_APP_NAME JAVA_OPTS "$JAVA_OPTS"
+cf set-env $CF_APP_NAME JBP_CONFIG_CONTAINER_CERTIFICATE_TRUST_STORE '{enabled: true}'
+
+#bind security group
+cf bind-security-group  <%= p("autosleep.security_group") %> $CF_ORG $CF_TARGET_SPACE
+  
+
+#start cf app
+cf start $CF_APP_NAME
+cf restage $CF_APP_NAME
+
+#create service broker + update if already existing  
+cf create-service-broker <%= p("autosleep.broker_name") %> <%= p("autosleep.security.user.name") %> <%= p("autosleep.security.user.password") %> https://$CF_APP_NAME.$CF_DOMAIN
+
+#offering-name corresponds to the value of cf.service.broker.id filled in the manifest file
+cf enable-service-access <%= p("autosleep.cf.service.broker.id") %> 
+
+

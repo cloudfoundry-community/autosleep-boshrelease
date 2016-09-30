@@ -1,0 +1,5 @@
+---
+name: autowakeup_proxy_pkg
+dependencies: []
+files:
+- autosleep/**/*

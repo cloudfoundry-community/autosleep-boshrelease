@@ -1,0 +1,12 @@
+set -e
+set -u
+set -x
+
+cd ${BUILD_DIR}/autosleep/spring-apps/autowakeup-proxy
+../../gradlew build -x test 
+mv build/libs/org.cloudfoundry.autosleep.autowakeup-proxy-*.war ${BUILD_DIR}
+
+
+cd ${BUILD_DIR}
+rm -rf autosleep
+
