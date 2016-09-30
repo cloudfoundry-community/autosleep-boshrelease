@@ -1,4 +1,4 @@
-# BOSH Release for cloudfoundry-operators-tools
+# BOSH Release for AutoSleep service
 
 ## Purpose
 
