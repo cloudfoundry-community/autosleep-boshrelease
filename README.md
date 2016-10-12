@@ -2,7 +2,7 @@
 
 ## Purpose
 
-The purpose of this bosh release is to deploy and setup AutoSleep service (https://github.com/cloudfoundry-community/autosleep).
+The purpose of this bosh release is to deploy and setup AutoSleep service (https://github.com/orange-cloudfoundry/autosleep).
 
 ### Orange AutoSleep Service for Cloudfoundry
 The aim of the auto-sleep project is to give the ability for Cloud Foundry operators to automatically have cf apps idled, after a given period of inactivity, and then automatically restarted when end users access apps again through traffic their routes.
@@ -13,6 +13,9 @@ This bosh release provides 3 errands :
 * publish_autowake_proxy: install and publish the autowake app, binding it to wildcard route domains
 * provision_autosleep: batch creates autosleep service instances in all the spaces of a given org 
 * unprovision_autosleep: batch removes autosleep service instances in all the spaces of a given org 
+
+recommanded reading before use:
+* https://github.com/orange-cloudfoundry/autosleep-service-boshrelease
 
 prerequisite:
 * a cloudfoundry autosleep account
@@ -26,9 +29,9 @@ To use this bosh release, first upload it to your bosh:
 
 ```
 bosh target BOSH_HOST
-git clone https://github.com/cloudfoundry-community/autosleep-boshrelease.git
-cd autosleep-boshrelease
-bosh upload release releases/autosleep-boshrelease-1.yml
+git clone https://github.com/cloudfoundry-community/cloudfoundry-operators-tools-boshrelease.git
+cd cloudfoundry-operators-tools-boshrelease
+bosh upload release releases/cloudfoundry-operators-tools-1.yml
 ```
 
 For [bosh-lite](https://github.com/cloudfoundry/bosh-lite), you can quickly create a deployment manifest & deploy a cluster:

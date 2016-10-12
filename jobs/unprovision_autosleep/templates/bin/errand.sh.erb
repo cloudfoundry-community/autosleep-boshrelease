@@ -19,12 +19,9 @@ IDLE_DURATION='<%= p("autosleep.services-instances.idle-duration") %>'
 <% if properties.autosleep.cf.filtered_orgs %>CF_FILTERED_ORGS='<%= p("autosleep.cf.filtered_orgs").map.join('|') %>'<% else %>CF_FILTERED_ORGS=''<% end %>
 <% if properties.autosleep.cf.filtered_spaces %>CF_FILTERED_SPACES='<%= p("autosleep.cf.filtered_spaces").map.join('|') %>'<% else %>CF_FILTERED_SPACES=''<% end %>
 
-AUTO_ENROLLMENT='<%= p("autosleep.services-instances.auto-enrollment") %>'
-EXCLUDE_FROM_AUTO_ENROLLMENT='<%= p("autosleep.services-instances.exclude-from-auto-enrollment") %>'
-AUTOSLEEP_DESPITE_ROUTE_SERVICES_ERROR='<%= p("autosleep.services-instances.autosleep-despite-route-services-error") %>'
 SECRET='<%= p("autosleep.services-instances.secret") %>'
 
-DRY_RUN='<%= p("autosleep.provision.dry_run") %>'
+DRY_RUN='<%= p("autosleep.unprovision.dry_run") %>'
 
 cf login -a $CF_API_URL  -u $CF_USERNAME -p $CF_PASSWORD  -o $CF_DEFAULT_ORG -s $CF_DEFAULT_SPACE --skip-ssl-validation
 
