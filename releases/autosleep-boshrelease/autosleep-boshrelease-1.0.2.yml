@@ -1,0 +1,42 @@
+---
+packages:
+- name: autosleep_core_pkg
+  version: 6628e1865b2630336b42b5b7da872553fbc45fd8
+  fingerprint: 6628e1865b2630336b42b5b7da872553fbc45fd8
+  sha1: bedbed9392ac3edb54837a631269c9c6de3f5a69
+  dependencies: []
+- name: autowakeup_proxy_pkg
+  version: dc80c08a025bfb62235c91f5faf8b130f657fe9f
+  fingerprint: dc80c08a025bfb62235c91f5faf8b130f657fe9f
+  sha1: c67034a24039bd6a2f3975903947d658dbf23f06
+  dependencies: []
+- name: cli
+  version: 0f19a1df7ef777208cc3bfcdc875b2b56613ab40
+  fingerprint: 0f19a1df7ef777208cc3bfcdc875b2b56613ab40
+  sha1: ccc124dc9266ca3811977c4067e1c72fd74284f7
+  dependencies: []
+jobs:
+- name: provision_autosleep
+  version: f711e048dc6448fe9736850c265d9d660ae83275
+  fingerprint: f711e048dc6448fe9736850c265d9d660ae83275
+  sha1: 89edb0c5ddb5168538510a30c27f8771ec160f52
+- name: unprovision_autosleep
+  version: ad57bd9d5f3ebf35428be11e66ab7ae5646498fb
+  fingerprint: ad57bd9d5f3ebf35428be11e66ab7ae5646498fb
+  sha1: f4c27289504675bac19a6327e338080a108f3444
+- name: publish_autosleep
+  version: ddfaeccf60ed4e850dfcbdcd1f3558f799ef4153
+  fingerprint: ddfaeccf60ed4e850dfcbdcd1f3558f799ef4153
+  sha1: b76180d9e47b6a96fe955b0bb25dd8c61264edf7
+- name: publish_autowakeup_proxy
+  version: 88298b4ee7c619884486ec31d5e6583bdd01e25f
+  fingerprint: 88298b4ee7c619884486ec31d5e6583bdd01e25f
+  sha1: 48f2e61f4677a5cbddb92355bee7e396a3b3a996
+license:
+  version: 8ca608bd3578ee17c21ec68853509d039dc27d74
+  fingerprint: 8ca608bd3578ee17c21ec68853509d039dc27d74
+  sha1: e2ed1084e1178d5cad0ba5503b675261d2fc758c
+commit_hash: 629d9e4c
+uncommitted_changes: true
+name: autosleep-boshrelease
+version: 1.0.2
