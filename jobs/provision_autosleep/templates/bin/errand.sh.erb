@@ -68,7 +68,7 @@ do
         echo "Dry mode enabled. We don't change anything"
       else
         #cf cs autosleep default autosleep-service -c '{"idle-duration":"$idle-duration", "exclude-from-auto-enrollment":"$EXCLUDE_FROM_AUTO_ENROLLMENT", "auto-enrollment":"$AUTO_ENROLLMENT", "secret":"$SECRET", "autosleep-despite-route-services-error":"$AUTOSLEEP_DESPITE_ROUTE_SERVICES_ERROR"}'
-        cf create-service ${SERVICE_NAME} ${SERVICE_PLAN} ${SERVICE_INSTANCE_NAME} -c "{\"idle-duration\": \"${IDLE_DURATION}\":\"$EXCLUDE_FROM_AUTO_ENROLLMENT\", \"auto-enrollment\":\"$AUTO_ENROLLMENT\", \"secret\":\"$SECRET\", \"autosleep-despite-route-services-error\":\"$AUTOSLEEP_DESPITE_ROUTE_SERVICES_ERROR\"}"
+        cf create-service ${SERVICE_NAME} ${SERVICE_PLAN} ${SERVICE_INSTANCE_NAME} -c "{\"idle-duration\": \"${IDLE_DURATION}\",\"exclude-from-auto-enrollment\": \"$EXCLUDE_FROM_AUTO_ENROLLMENT\", \"auto-enrollment\":\"$AUTO_ENROLLMENT\", \"secret\":\"$SECRET\", \"autosleep-despite-route-services-error\":\"$AUTOSLEEP_DESPITE_ROUTE_SERVICES_ERROR\"}"
       fi
     fi
     echo
