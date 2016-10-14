@@ -16,8 +16,16 @@ SERVICE_INSTANCE_NAME='<%= p("autosleep.cf.service.instance.id") %>'
 
 IDLE_DURATION='<%= p("autosleep.services-instances.idle-duration") %>'
 
-<% if properties.autosleep.cf.filtered_orgs %>CF_FILTERED_ORGS='<%= p("autosleep.cf.filtered_orgs").map.join('|') %>'<% else %>CF_FILTERED_ORGS=''<% end %>
-<% if properties.autosleep.cf.filtered_spaces %>CF_FILTERED_SPACES='<%= p("autosleep.cf.filtered_spaces").map.join('|') %>'<% else %>CF_FILTERED_SPACES=''<% end %>
+<% if properties.autosleep.cf.filtered_orgs %>
+CF_FILTERED_ORGS='<%= Array(p("autosleep.cf.filtered_orgs")).join('|') %>'
+<% else %>
+CF_FILTERED_ORGS=''
+<% end %>
+<% if properties.autosleep.cf.filtered_spaces %>
+CF_FILTERED_SPACES='<%= Array(p("autosleep.cf.filtered_spaces")).map.join('|') %>'
+<% else %>
+CF_FILTERED_SPACES=''
+<% end %>
 
 AUTO_ENROLLMENT='<%= p("autosleep.services-instances.auto-enrollment") %>'
 EXCLUDE_FROM_AUTO_ENROLLMENT='<%= p("autosleep.services-instances.exclude-from-auto-enrollment") %>'
@@ -35,7 +43,7 @@ then
   orgs=`cf orgs | tail -n +4`
 else
   # CF_FILTERED_ORGS is not empty
-  orgs=`cf orgs | tail -n +4 | egrep -v "${CF_FILTERED_ORGS}"`
+  orgs=`cf orgs | tail -n +4 | egrep -v "(${CF_FILTERED_ORGS})"`
 fi
 if [ -z "$orgs" ]
 then
@@ -53,7 +61,7 @@ do
     spaces=`cf spaces | tail -n +4`
   else
     # CF_FILTERED_SPACES is not empty
-    spaces=`cf spaces | tail -n +4 | egrep -v "${CF_FILTERED_SPACES}"`
+    spaces=`cf spaces | tail -n +4 | egrep -v "(${CF_FILTERED_SPACES})"`
   fi
   for space in $spaces;
   do
