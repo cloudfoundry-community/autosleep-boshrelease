@@ -10,16 +10,18 @@ CF_PASSWORD='<%= p("cf.password") %>'
 CF_DEFAULT_ORG='<%= p("cf.org") %>'
 CF_DEFAULT_SPACE='<%= p("cf.default_space") %>'
 
-SERVICE_NAME='<%= p("autosleep.cf.service.broker.id") %>'
-SERVICE_PLAN='<%= p("autosleep.cf.service.plan.id") %>'
 SERVICE_INSTANCE_NAME='<%= p("autosleep.cf.service.instance.id") %>'
 
-IDLE_DURATION='<%= p("autosleep.services-instances.idle-duration") %>'
-
-<% if properties.autosleep.cf.filtered_orgs %>CF_FILTERED_ORGS='<%= p("autosleep.cf.filtered_orgs").map.join('|') %>'<% else %>CF_FILTERED_ORGS=''<% end %>
-<% if properties.autosleep.cf.filtered_spaces %>CF_FILTERED_SPACES='<%= p("autosleep.cf.filtered_spaces").map.join('|') %>'<% else %>CF_FILTERED_SPACES=''<% end %>
-
-SECRET='<%= p("autosleep.services-instances.secret") %>'
+<% if properties.autosleep.cf.filtered_orgs %>
+CF_FILTERED_ORGS='<%= Array(p("autosleep.cf.filtered_orgs")).join('|') %>'
+<% else %>
+CF_FILTERED_ORGS=''
+<% end %>
+<% if properties.autosleep.cf.filtered_spaces %>
+CF_FILTERED_SPACES='<%= Array(p("autosleep.cf.filtered_spaces")).map.join('|') %>'
+<% else %>
+CF_FILTERED_SPACES=''
+<% end %>
 
 DRY_RUN='<%= p("autosleep.unprovision.dry_run") %>'
 

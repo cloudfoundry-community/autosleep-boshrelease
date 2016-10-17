@@ -30,27 +30,10 @@ properties:
     description: 'Password of the admin user'
     example: default
 
-  autosleep.cf.service.broker.id:
-    description: service_broker_id, seen as service offering name
-    default: autosleep
-
-  autosleep.cf.service.plan.id:
-    description: service_plan_id
-    default: default 
-
   autosleep.cf.service.instance.id:
     description: service instance name
     default: autosleep_service
     
-  autosleep.services-instances.secret:
-    description: secret to enable bypassing force mode
-    example: xxxxx
-    default: secret
-
-  autosleep.services-instances.autosleep-despite-route-services-error:
-    description: By setting the value of this parameter to true, you skip the errors sent by route binding operations and put the application to sleep anyway. Be aware that the application will not be restarted automatically by the autosleep if requested.
-    default: false
-
   autosleep.cf.filtered_orgs:
     description: orgs that should not be managed
 

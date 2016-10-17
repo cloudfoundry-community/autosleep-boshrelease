@@ -58,10 +58,10 @@ do
   if [ -z "$CF_FILTERED_SPACES" ]
   then
     # CF_FILTERED_SPACES is empty
-    spaces=`cf spaces | tail -n +4`
+    spaces=`cf spaces | grep -v "^No spaces found" | tail -n +4`
   else
     # CF_FILTERED_SPACES is not empty
-    spaces=`cf spaces | tail -n +4 | egrep -v "(${CF_FILTERED_SPACES})"`
+    spaces=`cf spaces | grep -v "^No spaces found" | tail -n +4 | egrep -v "(${CF_FILTERED_SPACES})"`
   fi
   for space in $spaces;
   do
