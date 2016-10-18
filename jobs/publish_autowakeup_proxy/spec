@@ -10,8 +10,9 @@ templates:
   bin/errand.sh.erb: bin/errand.sh
 
 properties:
-  autosleep.wake_domain:
-    description: domain on which to place autowake listener
+  autosleep.wake_domains:
+    description: array of domains on which to place autowake listener
+    default: []
   
   
   autosleep.broker_name:

@@ -25,9 +25,11 @@ cf map-route $CF_APP_NAME $CF_DOMAIN --hostname $CF_APP_NAME
 
 
 
-#set autowake on the concerned autowake domain
-cf create-route $CF_TARGET_SPACE  <%= p("autosleep.wake_domain") %> -n '*'
-cf map-route $CF_APP_NAME <%= p("autosleep.wake_domain") %> --hostname '*'
+#set autowake on the concerned autowake domainS
+<% p('autosleep.wake_domains', []).each do |domain| %>
+cf create-route $CF_TARGET_SPACE  <%= domain %> -n '*'
+cf map-route $CF_APP_NAME <%= domain %> --hostname '*'
+<% end %>
 
 # set shared db with autosleep cf app
 cf bind-service $CF_APP_NAME autosleep-mysql
